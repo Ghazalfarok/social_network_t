@@ -1,13 +1,14 @@
-from . views import *
-from django.urls import path,include
+from .views import *
+from django.urls import path, include
 from django.contrib.auth import views as auth_views
-urlpatterns = [
 
-    path('' , login_attempt , name="login"),
-    path('register' , register , name="register"),
-    path('otp' , otp , name="otp"),
-    path('logoutt/', CustomLogoutView.as_view(), name='logout'),
+urlpatterns = [
+    path('', HomeView.as_view(), name='home'),
+    path('login/', LoginAttempt.as_view(), name='api-login'),
+    path('register/', RegisterAPIView.as_view(), name='register'),
+    path('otp/', otp, name="otp"),
+    path('logout/', CustomLogoutView.as_view(), name='logout'),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('reset', reset_password , name='reset_password'),
-    path('accounts/reset_password/', auth_views.PasswordResetView.as_view(), name='password_reset'),
+    path('otp/', otp, name='otp_api'),
+    path('reset-password/', reset_password, name='reset_password_api'),
 ]
