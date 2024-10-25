@@ -49,6 +49,7 @@ class RegisterAPIView(APIView):
             email = serializer.validated_data['email']
             mobile = request.data.get('mobile')
 
+
             # Check for existing user by email and profile by mobile
             if User.objects.filter(email=email).exists():
                 return Response({'message': 'User with this email already exists.'}, status=status.HTTP_400_BAD_REQUEST)
